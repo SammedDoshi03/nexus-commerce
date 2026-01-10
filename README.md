@@ -21,42 +21,48 @@ A generic, Extensible & Scalable E-commerce Core for NestJS.
 - **Language**: [TypeScript](https://www.typescriptlang.org/)
 - **Auth**: Passport.js & JWT
 
-## Installation
-
-1.  Clone the repository:
-    ```bash
-    git clone https://github.com/SammedDoshi03/nexus-commerce.git
-    cd nexus-commerce
-    ```
-
-2.  Install dependencies:
-    ```bash
-    npm install
-    ```
-
-3.  Set up environment variables:
-    - Copy `.env.example` to `.env`
-    - Update `MONGO_URI` with your MongoDB connection string.
-    - Set `JWT_SECRET` and `PORT`.
-
-    ```bash
-    cp .env.example .env
-    ```
-
-## Running the app
+## Installation via NPM
+ 
+You can install this library in your existing NestJS application:
 
 ```bash
-# development
-npm run start
-
-# watch mode
-npm run start:dev
-
-# production mode
-npm run start:prod
+npm install nexus-commerce @nestjs/mongoose mongoose
 ```
 
-## API Documentation
+## Quick Start
+
+1. **Import Modules**: Import the desired modules into your root `AppModule`.
+2. **Database Connection**: Ensure you provide a MongoDB connection via `MongooseModule.forRoot()`.
+
+```typescript
+import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+import { ProductsModule, OrdersModule, UsersModule, AuthModule } from 'nexus-commerce';
+
+@Module({
+  imports: [
+    // 1. Connect to Database (Required)
+    MongooseModule.forRoot(process.env.MONGO_URI),
+
+    // 2. Register Feature Modules
+    UsersModule, 
+    AuthModule,
+    ProductsModule,
+    OrdersModule
+  ],
+})
+export class AppModule {}
+```
+
+## Configuration
+
+Ensure your `.env` file contains the following keys required by the library's services:
+
+```env
+JWT_SECRET=your_super_secret_key
+# Optional: Used if you stick to the default MongooseRepository
+MONGO_URI=mongodb://localhost:27017/your-db 
+```
 
 Once the application is running, you can visit the Swagger UI to interact with the API:
 
