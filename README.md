@@ -1,4 +1,8 @@
 # Nexus Commerce
+
+[![NPM Version](https://img.shields.io/npm/v/nexus-commerce.svg)](https://www.npmjs.com/package/nexus-commerce)
+[![License](https://img.shields.io/npm/l/nexus-commerce.svg)](LICENSE)
+
 A generic, Extensible & Scalable E-commerce Core for NestJS.
 
 **Nexus Commerce** is a production-ready, modular backend library designed to jumpstart e-commerce applications. It features a **Repository Pattern** architecture, allowing you to swap out the underlying database layer (defaults to MongoDB/Mongoose).
