@@ -1,6 +1,6 @@
 {
   "name": "nexus-commerce",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A generic, database-agnostic e-commerce backend library for NestJS",
   "author": "Sammed Doshi <sammeddoshi03.sd@gmail.com> (https://github.com/SammedDoshi03)",
   "private": false,
