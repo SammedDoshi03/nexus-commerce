@@ -28,7 +28,7 @@ describe('AuthController', () => {
     it('should return token', () => {
       const req = { user: { email: 't@t.com' } };
       const result = { access_token: 'abc' };
-      (authService.login as jest.Mock).mockResolvedValue(result);
+      (authService.login as jest.Mock).mockReturnValue(result);
 
       expect(controller.login(req)).toBe(result);
       expect(authService.login).toHaveBeenCalledWith(req.user);
