@@ -1,5 +1,5 @@
 export interface IGenericRepository<T> {
-  create(item: T): Promise<T>;
+  create(item: any): Promise<T>;
   findAll(
     filter?: any,
     options?: { skip?: number; limit?: number },
@@ -10,7 +10,7 @@ export interface IGenericRepository<T> {
 }
 
 export abstract class GenericRepository<T> implements IGenericRepository<T> {
-  abstract create(item: T): Promise<T>;
+  abstract create(item: any): Promise<T>;
   abstract findAll(
     filter?: any,
     options?: { skip?: number; limit?: number },
