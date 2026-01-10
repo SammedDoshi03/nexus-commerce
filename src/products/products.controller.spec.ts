@@ -16,9 +16,9 @@ describe('ProductsController', () => {
             create: jest.fn(),
             findAll: jest.fn(),
             findOne: jest.fn(),
-          }
-        }
-      ]
+          },
+        },
+      ],
     }).compile();
 
     controller = module.get<ProductsController>(ProductsController);

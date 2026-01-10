@@ -7,15 +7,17 @@ import { IUserRepository } from './interfaces/user-repository.interface';
 import { MongooseUsersRepository } from './repositories/mongoose-users.repository';
 
 @Module({
-  imports: [MongooseModule.forFeature([{ name: User.name, schema: UserSchema }])],
+  imports: [
+    MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
+  ],
   providers: [
     UsersService,
     {
       provide: IUserRepository,
       useClass: MongooseUsersRepository,
-    }
+    },
   ],
   controllers: [UsersController],
   exports: [UsersService],
 })
-export class UsersModule { }
+export class UsersModule {}

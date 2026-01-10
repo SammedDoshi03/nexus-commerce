@@ -14,9 +14,9 @@ describe('UsersController', () => {
           useValue: {
             create: jest.fn(),
             findOneByEmail: jest.fn(),
-          }
-        }
-      ]
+          },
+        },
+      ],
     }).compile();
 
     controller = module.get<UsersController>(UsersController);

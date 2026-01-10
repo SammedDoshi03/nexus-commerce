@@ -6,12 +6,17 @@ import { MongooseRepository } from '../../core/repositories/mongoose.repository'
 import { IOrderRepository } from '../interfaces/order-repository.interface';
 
 @Injectable()
-export class MongooseOrdersRepository extends MongooseRepository<OrderDocument> implements IOrderRepository {
-    constructor(@InjectModel(Order.name) private orderModel_: Model<OrderDocument>) {
-        super(orderModel_);
-    }
+export class MongooseOrdersRepository
+  extends MongooseRepository<OrderDocument>
+  implements IOrderRepository
+{
+  constructor(
+    @InjectModel(Order.name) private orderModel_: Model<OrderDocument>,
+  ) {
+    super(orderModel_);
+  }
 
-    async findByUserId(userId: string): Promise<OrderDocument[]> {
-        return this.orderModel_.find({ user: userId } as any).exec();
-    }
+  async findByUserId(userId: string): Promise<OrderDocument[]> {
+    return this.orderModel_.find({ user: userId } as any).exec();
+  }
 }

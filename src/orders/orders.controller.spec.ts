@@ -15,9 +15,9 @@ describe('OrdersController', () => {
             create: jest.fn(),
             findAll: jest.fn(),
             createOrder: jest.fn(),
-          }
-        }
-      ]
+          },
+        },
+      ],
     }).compile();
 
     controller = module.get<OrdersController>(OrdersController);

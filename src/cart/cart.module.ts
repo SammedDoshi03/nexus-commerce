@@ -16,10 +16,10 @@ import { MongooseCartRepository } from './repositories/mongoose-cart.repository'
     CartService,
     {
       provide: ICartRepository,
-      useClass: MongooseCartRepository
-    }
+      useClass: MongooseCartRepository,
+    },
   ],
   controllers: [CartController],
   exports: [CartService],
 })
-export class CartModule { }
+export class CartModule {}

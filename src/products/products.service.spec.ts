@@ -36,12 +36,20 @@ describe('ProductsService', () => {
 
   describe('create', () => {
     it('should create a product', async () => {
-      const createProductDto = { title: 'Test', price: 100, description: 'Desc', imageUrl: 'url', stock: 10 };
+      const createProductDto = {
+        title: 'Test',
+        price: 100,
+        description: 'Desc',
+        imageUrl: 'url',
+        stock: 10,
+      };
       const result = { ...createProductDto, _id: '1' };
       mockProductRepository.create.mockResolvedValue(result);
 
       expect(await service.create(createProductDto)).toBe(result);
-      expect(mockProductRepository.create).toHaveBeenCalledWith(createProductDto);
+      expect(mockProductRepository.create).toHaveBeenCalledWith(
+        createProductDto,
+      );
     });
   });
 
@@ -51,7 +59,10 @@ describe('ProductsService', () => {
       mockProductRepository.findAll.mockResolvedValue(result);
 
       expect(await service.findAll(0, 10)).toBe(result);
-      expect(mockProductRepository.findAll).toHaveBeenCalledWith({}, { skip: 0, limit: 10 });
+      expect(mockProductRepository.findAll).toHaveBeenCalledWith(
+        {},
+        { skip: 0, limit: 10 },
+      );
     });
   });
 
@@ -65,7 +76,9 @@ describe('ProductsService', () => {
 
     it('should throw NotFoundException if product not found', async () => {
       mockProductRepository.findOne.mockResolvedValue(null);
-      await expect(service.findOne('1')).rejects.toThrow('Product #1 not found');
+      await expect(service.findOne('1')).rejects.toThrow(
+        'Product #1 not found',
+      );
     });
   });
 

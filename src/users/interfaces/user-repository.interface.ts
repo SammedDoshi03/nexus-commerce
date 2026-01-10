@@ -2,5 +2,5 @@ import { GenericRepository } from '../../core/abstracts/generic-repository.abstr
 import { User } from '../schemas/user.schema';
 
 export abstract class IUserRepository extends GenericRepository<User> {
-    abstract findOneByEmail(email: string): Promise<User | null>;
+  abstract findOneByEmail(email: string): Promise<User | null>;
 }

@@ -42,7 +42,9 @@ describe('CartService', () => {
       mockCartRepository.create.mockResolvedValue(newCart);
 
       expect(await service.getCart('u1')).toBe(newCart);
-      expect(mockCartRepository.create).toHaveBeenCalledWith(expect.objectContaining({ user: 'u1' }));
+      expect(mockCartRepository.create).toHaveBeenCalledWith(
+        expect.objectContaining({ user: 'u1' }),
+      );
     });
   });
 
@@ -50,13 +52,18 @@ describe('CartService', () => {
     it('should add item to cart', async () => {
       const product = { _id: 'p1', price: 10 };
       const cart = { _id: 'c1', items: [] };
-      const updatedCart = { _id: 'c1', items: [{ product: product, quantity: 1 }] };
+      const updatedCart = {
+        _id: 'c1',
+        items: [{ product: product, quantity: 1 }],
+      };
 
       mockProductsService.findOne.mockResolvedValue(product);
       mockCartRepository.findByUserId.mockResolvedValue(cart);
       mockCartRepository.update.mockResolvedValue(undefined);
       // Second call to getCart returns updated cart
-      mockCartRepository.findByUserId.mockResolvedValueOnce(cart).mockResolvedValueOnce(updatedCart);
+      mockCartRepository.findByUserId
+        .mockResolvedValueOnce(cart)
+        .mockResolvedValueOnce(updatedCart);
 
       const result = await service.addToCart('u1', 'p1', 1);
       expect(result).toBe(updatedCart);
@@ -65,7 +72,9 @@ describe('CartService', () => {
 
     it('should throw if product not found', async () => {
       mockProductsService.findOne.mockResolvedValue(null);
-      await expect(service.addToCart('u1', 'p1', 1)).rejects.toThrow('Product not found');
+      await expect(service.addToCart('u1', 'p1', 1)).rejects.toThrow(
+        'Product not found',
+      );
     });
   });
   describe('removeFromCart', () => {
@@ -75,7 +84,9 @@ describe('CartService', () => {
 
       mockCartRepository.findByUserId.mockResolvedValue(cart);
       mockCartRepository.update.mockResolvedValue(undefined);
-      mockCartRepository.findByUserId.mockResolvedValueOnce(cart).mockResolvedValueOnce(updatedCart);
+      mockCartRepository.findByUserId
+        .mockResolvedValueOnce(cart)
+        .mockResolvedValueOnce(updatedCart);
 
       const result = await service.removeFromCart('u1', 'p1');
       expect(result).toBe(updatedCart);

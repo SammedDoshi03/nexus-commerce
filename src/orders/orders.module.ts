@@ -18,10 +18,10 @@ import { MongooseOrdersRepository } from './repositories/mongoose-orders.reposit
     OrdersService,
     {
       provide: IOrderRepository,
-      useClass: MongooseOrdersRepository
-    }
+      useClass: MongooseOrdersRepository,
+    },
   ],
   controllers: [OrdersController],
   exports: [OrdersService],
 })
-export class OrdersModule { }
+export class OrdersModule {}

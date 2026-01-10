@@ -15,9 +15,9 @@ describe('AuthController', () => {
           useValue: {
             login: jest.fn(),
             register: jest.fn(),
-          }
-        }
-      ]
+          },
+        },
+      ],
     }).compile();
 
     controller = module.get<AuthController>(AuthController);
@@ -25,12 +25,12 @@ describe('AuthController', () => {
   });
 
   describe('login', () => {
-    it('should return token', async () => {
+    it('should return token', () => {
       const req = { user: { email: 't@t.com' } };
       const result = { access_token: 'abc' };
       (authService.login as jest.Mock).mockResolvedValue(result);
 
-      expect(await controller.login(req)).toBe(result);
+      expect(controller.login(req)).toBe(result);
       expect(authService.login).toHaveBeenCalledWith(req.user);
     });
   });

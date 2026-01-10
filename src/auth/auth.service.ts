@@ -6,28 +6,30 @@ import { CreateUserDto } from '../users/dto/create-user.dto';
 
 @Injectable()
 export class AuthService {
-    constructor(
-        private usersService: UsersService,
-        private jwtService: JwtService
-    ) { }
+  constructor(
+    private usersService: UsersService,
+    private jwtService: JwtService,
+  ) {}
 
-    async validateUser(email: string, pass: string): Promise<any> {
-        const user = await this.usersService.findOneByEmail(email);
-        if (user && (await bcrypt.compare(pass, user.passwordHash))) {
-            const { passwordHash, ...result } = (user as any).toObject ? (user as any).toObject() : user;
-            return result;
-        }
-        return null;
+  async validateUser(email: string, pass: string): Promise<any> {
+    const user = await this.usersService.findOneByEmail(email);
+    if (user && (await bcrypt.compare(pass, user.passwordHash))) {
+      const { passwordHash, ...result } = (user as any).toObject
+        ? (user as any).toObject()
+        : user;
+      return result;
     }
+    return null;
+  }
 
-    async login(user: any) {
-        const payload = { email: user.email, sub: user._id, role: user.role };
-        return {
-            access_token: this.jwtService.sign(payload),
-        };
-    }
+  login(user: any) {
+    const payload = { email: user.email, sub: user._id, role: user.role };
+    return {
+      access_token: this.jwtService.sign(payload),
+    };
+  }
 
-    async register(createUserDto: CreateUserDto) {
-        return this.usersService.create(createUserDto);
-    }
+  async register(createUserDto: CreateUserDto) {
+    return this.usersService.create(createUserDto);
+  }
 }

@@ -7,15 +7,17 @@ import { IProductRepository } from './interfaces/product-repository.interface';
 import { ProductsRepository } from './repositories/mongoose-products.repository';
 
 @Module({
-  imports: [MongooseModule.forFeature([{ name: Product.name, schema: ProductSchema }])],
+  imports: [
+    MongooseModule.forFeature([{ name: Product.name, schema: ProductSchema }]),
+  ],
   providers: [
     ProductsService,
     {
       provide: IProductRepository,
-      useClass: ProductsRepository
-    }
+      useClass: ProductsRepository,
+    },
   ],
   controllers: [ProductsController],
   exports: [ProductsService],
 })
-export class ProductsModule { }
+export class ProductsModule {}

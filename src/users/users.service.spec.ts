@@ -23,9 +23,16 @@ describe('UsersService', () => {
 
   describe('create', () => {
     it('should hash password and create user', async () => {
-      const dto = { email: 't@t.com', password: 'plain', firstName: 'f', lastName: 'l' };
+      const dto = {
+        email: 't@t.com',
+        password: 'plain',
+        firstName: 'f',
+        lastName: 'l',
+      };
       // We assume bcrypt is working, testing that repository.create is called with a hashed password (not plain)
-      mockUserRepository.create.mockImplementation((user) => Promise.resolve({ ...user, _id: '1' }));
+      mockUserRepository.create.mockImplementation((user) =>
+        Promise.resolve({ ...user, _id: '1' }),
+      );
 
       const result = await service.create(dto);
 

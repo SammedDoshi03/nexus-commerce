@@ -16,9 +16,9 @@ describe('CartController', () => {
             addToCart: jest.fn(),
             removeFromCart: jest.fn(),
             clearCart: jest.fn(),
-          }
-        }
-      ]
+          },
+        },
+      ],
     }).compile();
 
     controller = module.get<CartController>(CartController);

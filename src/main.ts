@@ -13,11 +13,13 @@ async function bootstrap() {
   app.enableCors(); // Enable CORS
 
   // Validation
-  app.useGlobalPipes(new ValidationPipe({
-    whitelist: true, // Strip properties not in DTO
-    forbidNonWhitelisted: true, // Throw error if extra properties are sent
-    transform: true, // Auto-transform payloads to DTO instances
-  }));
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true, // Strip properties not in DTO
+      forbidNonWhitelisted: true, // Throw error if extra properties are sent
+      transform: true, // Auto-transform payloads to DTO instances
+    }),
+  );
 
   const config = new DocumentBuilder()
     .setTitle('Ecommerce API')
