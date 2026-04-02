@@ -9,7 +9,7 @@ A generic, Extensible & Scalable E-commerce Core for NestJS.
 
 ## Author
 **Sammed Doshi**  
-[GitHub](https://github.com/SammedDoshi03) | sammeddoshi03.sd@gmail.com
+[GitHub](https://github.com/SammedDoshi03) | [LinkedIn](https://www.linkedin.com/in/sammed-doshi-03/) | [Email](mailto:[sammeddoshi03.sd@gmail.com])
 
 ## Key Features
 - **Database Agnostic Design**: Abstract Repository Pattern allows easy migration (e.g., to SQL/TypeORM).
